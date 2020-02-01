@@ -13,28 +13,6 @@ $(() => {
 // makeGrid();
 
 
-const addImageGrid = () => {
-    for (i=1; i<152; i+=1) {
-    $.ajax({
-        url:'https://pokeapi.co/api/v2/pokemon/' + i,
-    }).then(
-        (data)=>{
-            let $imageSource = data.sprites.front_default;  
-            console.log(data)
-            // $('#',i).append("<img src =" + $imageSource + ">")
-            $('#container').append("<img src =" + $imageSource + ">")
-            // $('#name').html(data.name);
-            // $('#id').html(data.id);
-        },
-        ()=>{
-            console.log("failure")
-             }
-        )
-    }
-};
-
-
-addImageGrid();
 
 
 
@@ -73,6 +51,29 @@ $('#shuffle').on('click', (event) => {
              }
         )
     });
+const addImageGrid = () => {
+    for (i=1; i<152; i+=1) {
+    $.ajax({
+        url:'https://pokeapi.co/api/v2/pokemon/' + i,
+    }).then(
+        (data)=>{
+            let $imageSource = data.sprites.front_default;  
+            console.log(data)
+            // $('#',i).append("<img src =" + $imageSource + ">")
+            $('#container').append("<img src =" + $imageSource + ">")
+            // $('#name').html(data.name);
+            // $('#id').html(data.id);
+        },
+        ()=>{
+            console.log("failure")
+             }
+        )
+    }
+};
+addImageGrid();
+
+
+
 
 
 });

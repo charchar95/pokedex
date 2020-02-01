@@ -42,3 +42,8 @@ form {
     display: flex;
     flex-wrap: wrap;
 }
+
+h1 {
+    font-family: PokemonSolid;
+    src: url(../fonts/PokemonSolid.ttf);
+}
