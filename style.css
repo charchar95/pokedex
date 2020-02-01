@@ -1,3 +1,4 @@
+/* Sticky Nav */
 #sticky-nav {
     overflow: hidden;
     background-color: rgb(57,109,185);
@@ -26,15 +27,19 @@
     padding-top: 60px;
 }
 
+
+/* Form */
 form {
     padding: 15px; 
 }
 
+
+/* Grid */
 .grid {
     /* border: 1px solid green; */
-    flex: 0 32%;
-    height: 200px; 
-    min-width: 90px;
+    /* flex: 0 32%; */
+    height: 96px; 
+    min-width: 96px;
     margin: 5px;
 }
 

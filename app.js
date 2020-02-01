@@ -68,14 +68,11 @@ const addImageGrid = () => {
         url:'https://pokeapi.co/api/v2/pokemon/' + i,
     }).then(
         (data)=>{
-            let $name = data.name;
+            // console.log(data)
             let $imageSource = data.sprites.front_default;  
-            console.log(data)
-            // $('#',i).append("<img src =" + $imageSource + ">")
-            $('#container').append("<img src =" + $imageSource + ">")
-            // $name.attr("id", data.id);
-            // $('#name').html(data.name);
-            // $('#id').html(data.id);
+            let $pokemon = $('<div>').addClass("grid").attr('id', data.name)
+            $('#container').append($pokemon)
+            $pokemon.append("<img src =" + $imageSource + ">")
         },
         ()=>{
             console.log("failure")
@@ -83,19 +80,17 @@ const addImageGrid = () => {
         )
     }
 };
+addImageGrid();
 
-// $(document).ajaxComplete(function(){
-//     addImageGrid();
-//   });
-  addImageGrid();
-// $(document).ready(function(){
-//   $(document).ajaxStart(function(){
-//     $("#wait").css("display", "block");
-//   });
-  
-//   $("button").click(function(){
-//     $("#txt").load("demo_ajax_load.asp");
-//   });
+const check = (event) => {
+event.currentTarget();
+console.log('yes!')    
+}
+
+
+//Modal//
+$('.grid').on('click', check)
+
 
 
 });
