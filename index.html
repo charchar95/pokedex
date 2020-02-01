@@ -7,18 +7,34 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Pokedex</title>
-</head>
-<body>
+</head> 
+<header>
 <h1>Pokemon!</h1>
 <div id="sticky-nav">
     <a href="#home">Home</a>
     <a href="#search">Advance Search</a>
 </div>
-
+</header>
+<body>
+   
 <form>
     <input type='text' id= "search-box" placeholder="name or id"/>
     <input type='submit' value="Get Poke Info"/>
 </form>
+
+<!-- <form>
+<label for="type">Type:</label>
+<select id="type">
+    <option value="">Any</option>
+    <option value="bug">Bug</option>
+    <option value="dark">Dark</option>
+    <option value="dragon">Dragon</option>
+    <option value="electric">Electric</option>
+    <option value="fairy">Fairy</option>
+</select>
+<input type='submit' id="advance" value="big-search"/>
+</form> -->
+
 
 <div id="random-poke">
 <button id="shuffle">Show Me Random a Pokemon</button>

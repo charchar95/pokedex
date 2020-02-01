@@ -25,7 +25,7 @@ const stickyFunction = () => {
 
 
 ///Simple Search///
-$('form').on('submit', (event) => {
+$('#search-box').on('submit', (event) => {
     event.preventDefault();
     const userInput = $('#search-box').val();
     $.ajax({
@@ -44,7 +44,7 @@ $('form').on('submit', (event) => {
 
 ///Shuffle Pokemon///
 $('#shuffle').on('click', (event) => {
-    const randomNumber = Math.floor(Math.random() * 809) 
+    const randomNumber = Math.floor(Math.random() * 151) 
     console.log(randomNumber)
     $.ajax({
         url:'https://pokeapi.co/api/v2/pokemon/' + randomNumber,
@@ -63,33 +63,60 @@ $('#shuffle').on('click', (event) => {
 
 //Make a Grid of First Gen Pokemon//    
 const addImageGrid = () => {
-    for (i=1; i<152; i+=1) {
-    $.ajax({
-        url:'https://pokeapi.co/api/v2/pokemon/' + i,
-    }).then(
+    const urls = []
+    for (i=1; i<152; i+=1) {     
+      urls.push('https://pokeapi.co/api/v2/pokemon/' + i)
+    }
+     Promise.all(urls.map(url =>
+        $.ajax(url)
+        ))   
+    .then(
         (data)=>{
-            // console.log(data)
+           data.forEach(data => {
+            console.log(data.id)
             let $imageSource = data.sprites.front_default;  
             let $pokemon = $('<div>').addClass("grid").attr('id', data.name)
             $('#container').append($pokemon)
             $pokemon.append("<img src =" + $imageSource + ">")
+           })
         },
         ()=>{
             console.log("failure")
              }
-        )
+        )    
     }
-};
+
 addImageGrid();
 
-const check = (event) => {
-event.currentTarget();
-console.log('yes!')    
-}
+//Advance Search//
+// $('#advance').on('submit', (event) => {
+//     event.preventDefault();
+//     $('#container').hide();
+//     const searchList = []
+// for (i=1; i<152; i+=1) {
+// $.ajax({
+//     url:'https://pokeapi.co/api/v2/pokemon/' + i,
+// }).then(
+//     (data)=>{
+//         // console.log(data)
+//         searchList.push(data)
+//         if ($('#type') === "fairy" && data.type === "fairy")
+//         console.log(data.name)
+//     },
+//     ()=>{
+//         console.log("failure")
+//          }
+//     )
+// }
+// });
 
 
-//Modal//
-$('.grid').on('click', check)
+
+
+
+
+
+
 
 
 
