@@ -1,5 +1,17 @@
 $(() => {
 
+////Sticky Nav//////
+window.onscroll = function() {stickyFunction()};
+let navbar = document.getElementById("sticky-nav");
+let sticky = navbar.offsetTop;
+const stickyFunction = () => {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
 // const makeGrid = () => {
 //     for (i=1; i<10; i+=1) {
 //         const $square = $('<div>').addClass('grid');
@@ -9,11 +21,7 @@ $(() => {
 //         }
 //     }   
  
-
 // makeGrid();
-
-
-
 
 
 ///Simple Search///
@@ -51,16 +59,21 @@ $('#shuffle').on('click', (event) => {
              }
         )
     });
+
+
+//Make a Grid of First Gen Pokemon//    
 const addImageGrid = () => {
     for (i=1; i<152; i+=1) {
     $.ajax({
         url:'https://pokeapi.co/api/v2/pokemon/' + i,
     }).then(
         (data)=>{
+            let $name = data.name;
             let $imageSource = data.sprites.front_default;  
             console.log(data)
             // $('#',i).append("<img src =" + $imageSource + ">")
             $('#container').append("<img src =" + $imageSource + ">")
+            // $name.attr("id", data.id);
             // $('#name').html(data.name);
             // $('#id').html(data.id);
         },
@@ -70,10 +83,19 @@ const addImageGrid = () => {
         )
     }
 };
-addImageGrid();
 
-
-
+// $(document).ajaxComplete(function(){
+//     addImageGrid();
+//   });
+  addImageGrid();
+// $(document).ready(function(){
+//   $(document).ajaxStart(function(){
+//     $("#wait").css("display", "block");
+//   });
+  
+//   $("button").click(function(){
+//     $("#txt").load("demo_ajax_load.asp");
+//   });
 
 
 });
