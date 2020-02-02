@@ -12,17 +12,6 @@ const stickyFunction = () => {
   }
 }
 
-// const makeGrid = () => {
-//     for (i=1; i<10; i+=1) {
-//         const $square = $('<div>').addClass('grid');
-//         $square.attr("id", i);
-//         $('#container').append($square);
-//         // console.log(i);
-//         }
-//     }   
- 
-// makeGrid();
-
 
 ///Simple Search///
 $('#search-box').on('submit', (event) => {
@@ -43,9 +32,7 @@ $('#search-box').on('submit', (event) => {
     });
 
 ///Shuffle Pokemon///
-
 let action = 1;
-
 const shuffler = (event) => {
     const randomNumber = Math.floor(Math.random() * 151) 
     // console.log(randomNumber)
@@ -54,45 +41,22 @@ const shuffler = (event) => {
     }).then(
         (data)=>{
              let $imageSource = data.sprites.front_default; 
-            //  $('#picture').attr("id", "replace")
             if ( action === 1 ) {        
-            $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
-            // .css('background-image', 'url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"' + randomNumber + '".png")')
-            // $('#picture').detach()  
+            $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
             action = 2
             console.log(action)
          } else {
-            // $('#picture').detach()
             $('#picture:first').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
-            // .css('background-image', 'url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"' + randomNumber + '".png")')
             action = 1
             console.log(action)
          }
     },
-// console.log(data)
-            
-//             $(event.currentTarget).on("click", () => {
-//                 $('#picture').hide();
-//                 $('#replace').replaceWith(
-//                     "<img src =" + "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" + ">"
-                 
         ()=>{
             console.log("failure")
              }
         )
     };
-
 $("#shuffle").on("click", shuffler);
-
-   
-
-
-
-
-
-
-
-
 
 
 
@@ -122,6 +86,7 @@ const addImageGrid = () => {
         )    
     }
 addImageGrid();
+$('#kanto').on('click', addImageGrid)
 // https://teamtreehouse.com/library/manage-multiple-requests-with-promiseall
 // Before using promise.all to load the pokemon they were loading on the page in a different order each time
 // using a loop, ajax had to make a request 151 times 
@@ -144,40 +109,73 @@ const closeModal = () => {
 //Add event listener to Close button
 $closeBtn.on('click', closeModal);
 
-$("#popup").on('click', openModal);
+$("grid").on('click', openModal);
 
 
 
+// const fairySearch = () => {
+//     const search = []
+//     for (i=1; i<15; i+=1) {     
+//       search.push('https://pokeapi.co/api/v2/type/' + i)
+//     }
+//      Promise.all(search.map(search =>
+//         $.ajax(search)
+//         ))   
+//     .then(
+//         (data)=>{
+           
+//                data.forEach(data => {
+//             if (data.name === "ground"){
+//                 $('#searching').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + data.id + ".png" )
+//             }
+//            })
+//         },
+//         ()=>{
+//             console.log("failure")
+//              }
+//         )    
+//     }
+// $('#fairy').on('click', fairySearch)
+
+// $("#popup").hover(function(){
+//     $("grid").animate({height: "300px"});
+//   });
 
 
+///Will it be SHINY??///
+let shinyAction = 1;
+let shiny = Math.floor(Math.random() * 5)
 
-//Advance Search//
-// $('#advance').on('submit', (event) => {
-//     event.preventDefault();
-//     $('#container').hide();
-//     const searchList = []
-// for (i=1; i<152; i+=1) {
-// $.ajax({
-//     url:'https://pokeapi.co/api/v2/pokemon/' + i,
-// }).then(
-//     (data)=>{
-//         // console.log(data)
-//         searchList.push(data)
-//         if ($('#type') === "fairy" && data.type === "fairy")
-//         console.log(data.name)
-//     },
-//     ()=>{
-//         console.log("failure")
-//          }
-//     )
-// }
-// });
-
-
-
-
-
-
+const shinyShuffler = (event) => {
+    const randomNumber = Math.floor(Math.random() * 151) 
+    // console.log(randomNumber)
+    $.ajax({
+        url:'https://pokeapi.co/api/v2/pokemon/' + randomNumber,
+    }).then(
+        (data)=>{
+            if (shinyAction === 1 ) {        
+            $('#shiny').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
+            shinyAction = 2   
+         } else if 
+            (shinyAction === 1 && shiny === 1 ) {   
+            $('#shiny').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/" + randomNumber + ".png" ) 
+            shinyAction = 2   
+         } else if 
+         (shinyAction === 2 && shiny === 1 ) {   
+         $('#shiny').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/" + randomNumber + ".png" ) 
+         shinyAction = 1    
+         } else {
+            $('#shiny:first').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
+            shinyAction = 1
+            
+         }
+    },
+        ()=>{
+            console.log("failure")
+             }
+        )
+    };
+$("#shiny-shuffler").on("click", shinyShuffler);
 
 
 
