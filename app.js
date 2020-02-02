@@ -43,22 +43,57 @@ $('#search-box').on('submit', (event) => {
     });
 
 ///Shuffle Pokemon///
-$('#shuffle').on('click', (event) => {
+
+let action = 1;
+
+const shuffler = (event) => {
     const randomNumber = Math.floor(Math.random() * 151) 
-    console.log(randomNumber)
+    // console.log(randomNumber)
     $.ajax({
         url:'https://pokeapi.co/api/v2/pokemon/' + randomNumber,
     }).then(
         (data)=>{
-            console.log(data)
-            let $imageSource = data.sprites.front_default;  
-            $('#picture').append("<img src =" + $imageSource + ">")
-        },
+             let $imageSource = data.sprites.front_default; 
+            //  $('#picture').attr("id", "replace")
+            if ( action === 1 ) {        
+            $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
+            // .css('background-image', 'url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"' + randomNumber + '".png")')
+            // $('#picture').detach()  
+            action = 2
+            console.log(action)
+         } else {
+            // $('#picture').detach()
+            $('#picture:first').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
+            // .css('background-image', 'url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"' + randomNumber + '".png")')
+            action = 1
+            console.log(action)
+         }
+    },
+// console.log(data)
+            
+//             $(event.currentTarget).on("click", () => {
+//                 $('#picture').hide();
+//                 $('#replace').replaceWith(
+//                     "<img src =" + "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" + ">"
+                 
         ()=>{
             console.log("failure")
              }
         )
-    });
+    };
+
+$("#shuffle").on("click", shuffler);
+
+   
+
+
+
+
+
+
+
+
+
 
 
 //Make a Grid of First Gen Pokemon//    
@@ -73,9 +108,10 @@ const addImageGrid = () => {
     .then(
         (data)=>{
            data.forEach(data => {
-            console.log(data.id)
+            // console.log(data.id)
             let $imageSource = data.sprites.front_default;  
-            let $pokemon = $('<div>').addClass("grid").attr('id', data.name)
+            let $pokemon = $('<div>').addClass("grid").attr('id', 'popup')
+            // .addClass(data.name)
             $('#container').append($pokemon)
             $pokemon.append("<img src =" + $imageSource + ">")
            })
@@ -85,8 +121,35 @@ const addImageGrid = () => {
              }
         )    
     }
-
 addImageGrid();
+// https://teamtreehouse.com/library/manage-multiple-requests-with-promiseall
+// Before using promise.all to load the pokemon they were loading on the page in a different order each time
+// using a loop, ajax had to make a request 151 times 
+// Using promise.all makes sure that everything is loaded before the .then
+// I also tried using a setTimeout. That loaded the same pokemon 151 times. 
+
+
+
+//Modal//
+const $closeBtn = $('#close')
+const openModal = (event) => {
+    event.currentTarget();
+    $("#modal-pop").css('display', 'block');
+    // $button.append(data.name)
+    }   
+const closeModal = () => {
+    $closeBtn.css('display', 'hide');
+    }
+
+//Add event listener to Close button
+$closeBtn.on('click', closeModal);
+
+$("#popup").on('click', openModal);
+
+
+
+
+
 
 //Advance Search//
 // $('#advance').on('submit', (event) => {

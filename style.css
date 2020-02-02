@@ -60,10 +60,17 @@ h1 {
     text-align: center;
 }
 
+/* #picture {
+    padding: 15px;
+    margin: 15px;
+} */
 
+#shuffler {
+    margin-bottom: 15px;
+    
+}
 
-
-#modal {
+#modal-pop {
 	background-color: rgba(0,0,0,0.4);
 	position: fixed;
 	top: 0;
