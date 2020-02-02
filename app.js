@@ -40,15 +40,15 @@ const shuffler = (event) => {
         url:'https://pokeapi.co/api/v2/pokemon/' + randomNumber,
     }).then(
         (data)=>{
-             let $imageSource = data.sprites.front_default; 
+            let $imageSource = data.sprites.front_default; 
             if ( action === 1 ) {        
             $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
             action = 2
-            console.log(action)
+            // console.log(action)
          } else {
             $('#picture:first').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
             action = 1
-            console.log(action)
+            // console.log(action)
          }
     },
         ()=>{
@@ -78,6 +78,16 @@ const addImageGrid = () => {
             // .addClass(data.name)
             $('#container').append($pokemon)
             $pokemon.append("<img src =" + $imageSource + ">")
+
+            //modal popup listener
+            $pokemon.on('click', function(){
+                $("#modal-pop").css('display', 'block');
+                $("#modal-textbox").append(data.name)
+                $("#modal-textbox").append(data.id)
+                $("#modal-textbox").append(data.height)
+                $("#modal-textbox").append(data.weight)
+            })
+
            })
         },
         ()=>{
@@ -94,22 +104,15 @@ $('#kanto').on('click', addImageGrid)
 // I also tried using a setTimeout. That loaded the same pokemon 151 times. 
 
 
-
-//Modal//
-const $closeBtn = $('#close')
-const openModal = (event) => {
-    event.currentTarget();
-    $("#modal-pop").css('display', 'block');
-    // $button.append(data.name)
-    }   
+// Close Modal//
+const $closeBtn = $('#close') 
 const closeModal = () => {
-    $closeBtn.css('display', 'hide');
+    $("#modal-pop").css('display', 'none');
+    $("#modal-textbox").text('')
+    $("#modal-textbox").append($closeBtn)
     }
-
-//Add event listener to Close button
 $closeBtn.on('click', closeModal);
 
-$("grid").on('click', openModal);
 
 
 
