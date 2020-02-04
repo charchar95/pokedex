@@ -2,6 +2,7 @@
 #sticky-nav {
     overflow: hidden;
     background-color: rgb(57,109,185);
+   
 }
 
 #sticky-nav a {
@@ -11,6 +12,7 @@
     text-align: center;
     padding: 14px;
     text-decoration: none;
+    
 }
 
 .content {
@@ -27,10 +29,27 @@
     padding-top: 60px;
 }
 
-
 /* Form */
 form {
     padding: 15px; 
+}
+
+/* Fonts */
+@font-face {
+    font-family: PokemonHollow;
+    src: url(pokemon-font/PokemonHollow.ttf); 
+}
+
+@font-face {
+font-family: PokemonSolid;
+    src: url(pokemon-font/PokemonSolid.ttf);
+}
+
+h1 {
+    font-family: PokemonHollow;
+    color: rgb(232,187,15);
+    font-size: 45px;
+    text-align: center;
 }
 
 
@@ -38,26 +57,18 @@ form {
 .grid {
     /* border: 1px solid green; */
     /* flex: 0 32%; */
-    height: 96px; 
-    min-width: 96px;
-    margin: 5px;
+    height: 120px; 
+    min-width: 120px;
+    padding: 15px;
+    border: 1px solid black;
 }
 
 #container {
     display: flex;
     flex-wrap: wrap;
-}
-@font-face {
-    font-family: PokemonHollow;
-    src: url(pokemon-font/PokemonHollow.ttf); 
-}
-
-
-h1 {
-    font-family: PokemonHollow;
-    color: rgb(232,187,15);
-    font-size: 45px;
     text-align: center;
+    font-family: monospace;
+    margin: 0 auto;
 }
 
 #picture, #shiny {
@@ -67,6 +78,7 @@ h1 {
 }
 
 
+/* Modal */
 #modal-pop {
 	background-color: rgba(0,0,0,0.4);
 	position: fixed;
@@ -75,49 +87,110 @@ h1 {
 	height: 100%;
 	width: 100%;
 	z-index: 1;
-	/*This puts our modal in front of the body (which has a default z-index setting of `0`*/
 	overflow: auto;
-	/*If overflow is clipped, a scroll-bar should be added to see the rest of the content*/
-	display: none;
+    display: none;
+    
 }
 
 #modal-textbox{
-	background-color: white;
+	background-color: rgb(232, 48, 76);
 	height: 350px;
-	width: 550px;
-	border-radius: 2px;
+	width: 250px;
+	border-radius: 25px;
 	margin: 150px auto;
 	box-shadow: 0 2px 2px rgba(0,0,0,0.2);
 	padding: 2%;
 	line-height: 120%;
-    font-family: Arial;
     display: flex;
-
+    flex-direction: column;
+    border: 1px solid black;
+    box-shadow: 5px 10px #888888;
 }
 
-#modal-footer {
-	text-align: right;
+#modal-pic {
+    margin: 0 auto;
 }
 
-h1 {
-	padding-bottom: 15px;
+#modal-image{
+    height: 96px;
+    width: 96px;
+    border: white solid 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0, .9);
+    margin: 0 auto;
+    margin-bottom: 10px;
+    
 }
 
-.modals-buttons {
-	padding: 14px 18px;
-	background-color: #677996;
-	border: none;
-	outline: none;
-	border-radius: 3px;
-	color: white;
-	font-family: 'Arial';
-	cursor: pointer;
+#modal-info {
+    width: 45%;
+    background-color: rgba(0,0,0, .9);
+    color: white;
+    border: white solid 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    padding: 1em;
+    margin: 0 auto;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-/* body {
-    background-color:rgb(221, 35, 16, .7);
+#close {
+    width: 17%;
+    text-align: justify;
 }
 
-header {
-    background-color: white;
-} */
+#type-one, #type-two {
+    background-color: rgba(0,0,0, .9);
+    color: white;
+    border: white solid 10px;
+    border-radius: 5px;
+    padding: 3px, 1px, 3px, 1px;
+    margin-top: 5px;
+    width: 75px;
+    text-align: center;
+    font-family: monospace;
+    font-weight: 500;
+}
+
+#modal-types {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+
+
+  @-webkit-keyframes wiggle
+  {
+      0% {-webkit-transform: rotateZ(2deg);}
+      50% {-webkit-transform: rotateZ(-2deg);}
+      100% {-webkit-transform: rotateZ(2deg);}
+  }
+  @-moz-keyframes wiggle
+  {
+      0% {-moz-transform: rotateZ(2deg);}
+      50% {-moz-transform: rotateZ(-2deg);}
+      100% {-moz-transform: rotateZ(2deg);}
+  }
+  @-o-keyframes wiggle
+  {
+      0% {-o-transform: rotateZ(2deg);}
+      50% {-o-transform: rotateZ(-2deg);}
+      100% {-o-transform: rotateZ(2deg);}
+  }
+  @keyframes wiggle
+  {
+      0% {transform: rotateZ(2deg);}
+      50% {transform: rotateZ(-2deg);}
+      100% {transform: rotateZ(2deg);}
+  }
+  
+  .grid:hover {
+      -webkit-animation: wiggle 0.2s ease-out ;
+      -moz-animation: wiggle 0.2s ease-out ;
+      -o-animation: wiggle 0.2s ease-out ;
+      animation: wiggle 0.2s ease-out ;
+  }
