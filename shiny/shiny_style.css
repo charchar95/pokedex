@@ -37,29 +37,20 @@
     padding-top: 60px;
 }
 
-/* Search Form */
+/* Form */
 form {
     padding: 15px; 
 }
 
-#search{
-    display: flex;
-    align-content: justify; 
-    font-family: monospace;
-    text-align: center;
-}
-
-
-
 /* Fonts */
 @font-face {
     font-family: PokemonHollow;
-    src: url(pokemon-font/PokemonHollow.ttf); 
+    src: url(../pokemon-font/PokemonHollow.ttf); 
 }
 
 @font-face {
 font-family: PokemonSolid;
-    src: url(pokemon-font/PokemonSolid.ttf);
+    src: url(../pokemon-font/PokemonSolid.ttf);
 }
 
 h1 {

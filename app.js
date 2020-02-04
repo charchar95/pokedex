@@ -14,14 +14,35 @@ const stickyFunction = () => {
 
 
 ///Simple Search///
-$('#search-box').on('submit', (event) => {
+$('form').on('submit', (event) => {
     event.preventDefault();
+    $('#search-box').trigger('reset');
     const userInput = $('#search-box').val();
+    lowerCaseInput = userInput.toLowerCase()
     $.ajax({
-        url:'https://pokeapi.co/api/v2/nature/' + userInput,
+        url:'https://pokeapi.co/api/v2/pokemon/' + lowerCaseInput,
     }).then(
         (data)=>{
-            console.log(data)
+            let $imageSource = data.sprites.front_default;  
+            let $searchPokemon = $('<div>').attr('id', 'popup').addClass("grid")
+            $('#search').append($searchPokemon)
+            $searchPokemon.append("<img src =" + $imageSource + ">" + ('<br>') + data.name + ('<br>') + '#' + data.id)
+            $searchPokemon.on('click', function(){
+                // Code to dynamically display pokedex info //
+                $("#modal-pop").css('display', 'block');
+                $("#modal-info").append(data.name, '<br>')
+                $("#modal-info").append('ID: #' + data.id, '<br>')
+                $("#modal-info").append('HEIGHT: ' + data.height, '<br>')
+                $("#modal-info").append('WEIGHT: ' + data.weight, '<br>')
+                $("#modal-image").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + data.id + ".png" )
+                    if (data.types[0] && data.types[1] ) {
+                        $("#type-one").append("TYPE 1 " + data.types[0].type.name)
+                        $("#type-two").append("TYPE 2 " + data.types[1].type.name)
+                    } else { 
+                        $("#type-one").append("TYPE 1 " + data.types[0].type.name)
+                        $("#type-two").hide()
+                    }   
+            })
         },
         ()=>{
             console.log("failure")
@@ -54,9 +75,7 @@ const shuffler = (event) => {
     }).then(
         (data)=>{
             let $imageSource = data.sprites.front_default; 
-            if ( action === 1 ) {        
-             action = 2
-            $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
+
             $('#picture').on('click', function(){
                 // Code to dynamically display pokedex info //
                 $("#modal-pop").css('display', 'block');
@@ -73,25 +92,13 @@ const shuffler = (event) => {
                         $("#type-two").hide()
                     }   
             })
+            if ( action === 1 ) {        
+             action = 2
+            $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
+            
          } else {
              action = 1
-            $('#picture:first').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
-            $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
-            $('#picture').on('click', function(){
-                $("#modal-pop").css('display', 'block');
-                $("#modal-info").append(data.name, '<br>')
-                $("#modal-info").append('ID: #' + data.id, '<br>')
-                $("#modal-info").append('HEIGHT: ' + data.height, '<br>')
-                $("#modal-info").append('WEIGHT: ' + data.weight, '<br>')
-                $("#modal-image").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + data.id + ".png" )
-                    if (data.types[0] && data.types[1] ) {
-                        $("#type-one").append("TYPE 1 " + data.types[0].type.name)
-                        $("#type-two").append("TYPE 2 " + data.types[1].type.name)
-                    } else { 
-                        $("#type-one").append("TYPE 1 " + data.types[0].type.name)
-                        $("#type-two").hide()
-                    }   
-            })
+             $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
             // console.log(action)
          }
     },
