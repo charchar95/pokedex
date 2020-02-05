@@ -31,6 +31,7 @@ $('form').on('submit', (event) => {
         (data)=>{
             let $imageSource = data.sprites.front_default;  
             let $searchPokemon = $('<div>').attr('id', 'popup').addClass("grid")
+            $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -92,8 +93,7 @@ const shuffler = () => {
             // logic for replacing the image using a random image
             if ( action === 1 ) {        
              $("#picture").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
-             $("#picture").append(data.name)
-            //   + ('<br>') + '#' + data.id)
+             $("#picture").append(data.name + ('<br>') + '#' + data.id)
              action = 2
              
          } else {
@@ -103,6 +103,7 @@ const shuffler = () => {
          }
         // event listener for modal popup //
             $("#picture").on('click', function(){
+            $("#modal-pop").fadeIn();
         // empty the modal textbox //
             $("#modal-info").text('')
             $("#modal-image").attr('src', '')
@@ -111,6 +112,7 @@ const shuffler = () => {
             $("#type-two").text('').show();
             $("#modal-pop").css('display', 'none');
         // Code to dynamically display pokedex info //
+            $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -196,6 +198,7 @@ const firstGen = () => {
             //modal popup listener
             $pokemon.on('click', function(){
             // Code to dynamically display pokedex info //
+                $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -253,6 +256,7 @@ const secondGen = () => {
             //modal popup listener
             $pokemon.on('click', function(){
                 // Code to dynamically display pokedex info //
+                $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -301,6 +305,7 @@ const thirdGen = () => {
             //modal popup listener
             $pokemon.on('click', function(){
                 // Code to dynamically display pokedex info //
+                $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -350,6 +355,7 @@ const fourthGen = () => {
             //modal popup listener
             $pokemon.on('click', function(){
                 // Code to dynamically display pokedex info //
+                $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -398,6 +404,7 @@ const fifthGen = () => {
             //modal popup listener
             $pokemon.on('click', function(){
                 // Code to dynamically display pokedex info //
+                $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -446,6 +453,7 @@ const sixthGen = () => {
             //modal popup listener
             $pokemon.on('click', function(){
                 // Code to dynamically display pokedex info //
+                $("#modal-pop").fadeIn();
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
