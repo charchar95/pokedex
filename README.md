@@ -16,4 +16,5 @@ None :)
 
 ## Unsolved Problems
 I would have liked to build a complex search feature that allowed users to toggle between a variety of filters (type, height, weight, color of pokemon, legendary, baby, weakness, etc)
-
+There is an outline of a box when the user click on the shuffler in the nav. When the user clicks on the shuffle button the empty box gets filled. I would have liked to make a whole for the shuffler. 
+If I were able to update the app, I would like to make it so a user can save what pokemon they have caught and on different platforms. It could be a hub for all the games and collect the information of which pokemon they have caught in all the verisons of the game. 

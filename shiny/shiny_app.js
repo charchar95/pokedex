@@ -190,7 +190,8 @@ $(() => {
         }
     firstGen();
     $('#kanto').on('click', function(){
-        $('#title').empty();
+        $('#container').empty();
+        $('#title').text('');
         firstGen();
     
     });
