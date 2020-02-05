@@ -64,15 +64,17 @@ $closeBtn.on('click', closeModal);
 
 ///Shuffle Pokemon///
 
-$('#shuffle').hide();
+$('#random-poke').hide();
 
-$('#random-pokemon').on('click', function(){
-    $('#shuffle').show();
+$('#random-pokemon').on('click', function(event){
+    event.preventDefault();
+    $('#random-poke').show();
     $('#searching').hide();
 })
 
 
-const shuffler = (event) => {
+const shuffler = () => {
+    let action = 1
     const randomNumber = Math.floor(Math.random() * 723) 
     // console.log(randomNumber)
     $.ajax({
@@ -80,12 +82,25 @@ const shuffler = (event) => {
     }).then(
         (data)=>{
             let $imageSource = data.sprites.front_default; 
-            $('#container').empty()
-            $('#picture').attr('id', 'popup').addClass("grid")
-            $('#picture').append("<img src =" + $imageSource + ">")
+
+            $("#picture").attr('id', 'popup').addClass("grid")
+            // $pictureRandom.attr("src", $imageSource)
+            
+            // logic for replacing the image using a random image
+            if ( action === 1 ) {        
+             $("#picture").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
+             $("#picture").append(data.name + ('<br>') + '#' + data.id)
+             action = 2
+             console.log(action)
+         } else {
+             $("#picture").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
+             $("#picture").append(data.name + ('<br>') + '#' + data.id)
+             action = 1
+             console.log(action)
+         }
            
             // event listener for modal popup //
-            $('#picture').on('click', function(){
+            $("#picture").on('click', function(){
                 // Code to dynamically display pokedex info //
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
@@ -102,16 +117,7 @@ const shuffler = (event) => {
                         $("#type-two").hide()
                     }   
             })
-            // logic for replacing the image using a random image
-            if ( action === 1 ) {        
-             action = 2
-            $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
             
-         } else {
-             action = 1
-             $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
-            // console.log(action)
-         }
     },
         ()=>{
             console.log("failure")

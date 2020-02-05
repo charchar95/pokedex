@@ -42,7 +42,7 @@ form {
     padding: 15px; 
 }
 
-#searching{
+#searching {
     display: flex;
     align-content: justify; 
     font-family: monospace;
@@ -55,6 +55,7 @@ form {
     margin: 15px;
     padding: 1em;
 }
+
 
 
 /* Fonts */
@@ -99,7 +100,7 @@ h2 {
     margin: 0 auto;
 }
 
-#picture, #shiny {
+#shiny {
     padding: 15px;
     margin: 15px;
     display: block
@@ -164,6 +165,13 @@ h2 {
     text-align: center;
 }
 
+#modal-types {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
 #close {
     width: 17%;
     text-align: justify;
@@ -182,12 +190,7 @@ h2 {
     font-weight: 500;
 }
 
-#modal-types {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-}
+
 
 
 
