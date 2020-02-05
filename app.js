@@ -83,22 +83,22 @@ $('#random-pokemon').on('click', function(event){
 const shuffler = () => {
     let action = 1
     const randomNumber = Math.floor(Math.random() * 723) 
+    
     // console.log(randomNumber)
     $.ajax({
         url:'https://pokeapi.co/api/v2/pokemon/' + randomNumber,
     }).then(
         (data)=>{
-            let $imageSource = data.sprites.front_default; 
-            
-            // logic for replacing the image using a random image
-            if ( action === 1 ) {        
+            // logic for replacing the image using a random number 
+            if ( action === 1 ) { 
              $("#picture").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
-             $("#picture").append(data.name + ('<br>') + '#' + data.id)
+             $("#info").text('')   
+             $("#info").append(data.name + ('<br>') + '#' + data.id)
              action = 2
-             
          } else {
              $("#picture").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
-             $("#picture").append(data.name + ('<br>') + '#' + data.id)
+             $("#info").text('')  
+             $("#info").append(data.name + ('<br>') + '#' + data.id)
              action = 1
          }
         // event listener for modal popup //
@@ -127,8 +127,7 @@ const shuffler = () => {
                         $("#type-one").append("TYPE 1 " + data.types[0].type.name)
                         $("#type-two").hide()
                     }   
-            })
-            
+            })  
     },
         ()=>{
             console.log("failure")
@@ -137,42 +136,6 @@ const shuffler = () => {
     };
 $("#shuffle").on("click", shuffler);
 
-
-
-///Will it be SHINY??///
-let shinyAction = 1;
-let shiny = Math.floor(Math.random() * 5)
-
-const shinyShuffler = (event) => {
-    const randomNumber = Math.floor(Math.random() * 723) 
-    // console.log(randomNumber)
-    $.ajax({
-        url:'https://pokeapi.co/api/v2/pokemon/' + randomNumber,
-    }).then(
-        (data)=>{
-            if (shinyAction === 1 ) {        
-            $('#shiny').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 
-            shinyAction = 2   
-         } else if 
-            (shinyAction === 1 && shiny === 1 ) {   
-            $('#shiny').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/" + randomNumber + ".png" ) 
-            shinyAction = 2   
-         } else if 
-         (shinyAction === 2 && shiny === 1 ) {   
-         $('#shiny').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/" + randomNumber + ".png" ) 
-         shinyAction = 1    
-         } else {
-            $('#shiny:first').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" )
-            shinyAction = 1
-            
-         }
-    },
-        ()=>{
-            console.log("failure")
-             }
-        )
-    };
-$("#shiny-shuffler").on("click", shinyShuffler);
 
 
 
@@ -187,7 +150,11 @@ const firstGen = () => {
         ))   
     .then(
         (data)=>{
-           data.forEach(data => {
+            // add title to grid //
+            let $text = $('<h3>')
+            $text.text('First Generation')
+            $('#title').prepend($text)
+         data.forEach(data => {
             // console.log(data.id)
             let $imageSource = data.sprites.front_default;  
             let $pokemon = $('<div>').addClass("grid").attr('id', 'popup')
@@ -223,8 +190,9 @@ const firstGen = () => {
     }
 firstGen();
 $('#kanto').on('click', function(){
-    $('#container').empty();
+    $('#title').empty();
     firstGen();
+
 });
 
 
@@ -234,7 +202,7 @@ $('#kanto').on('click', function(){
 // Using promise.all makes sure that everything is loaded before the .then
 // I also tried using a setTimeout. That loaded the same pokemon 151 times. 
 
-
+// Grid of Second Gen//
 const secondGen = () => {
     const urls = []
     for (i=152; i<252; i+=1) {     
@@ -281,9 +249,17 @@ const secondGen = () => {
     } 
     $('#johto').on('click', function(){
         $('#container').empty();
+        $('#title').text('');
         secondGen();
+        // add title to grid //
+        let $text = $('<h3>')
+        $text.text('Second Generation')
+        $('#title').prepend($text)
+
 });    
 
+
+// Grid of Third Gen//
 const thirdGen = () => {
     const urls = []
     for (i=252; i<387; i+=1) {     
@@ -294,6 +270,7 @@ const thirdGen = () => {
         ))   
     .then(
         (data)=>{
+           
            data.forEach(data => {
             // console.log(data.id)
             let $imageSource = data.sprites.front_default;  
@@ -330,10 +307,16 @@ const thirdGen = () => {
     } 
     $('#hoenn').on('click', function(){
         $('#container').empty();
+        $('#title').text('');
         thirdGen();
+        // add title to grid //
+        let $text = $('<h3>')
+        $text.text('Third Generation')
+        $('#title').prepend($text)
+
 });  
 
-
+// Grid of Fourth Gen//
 const fourthGen = () => {
     const urls = []
     for (i=387; i<494; i+=1) {     
@@ -348,10 +331,9 @@ const fourthGen = () => {
             // console.log(data.id)
             let $imageSource = data.sprites.front_default;  
             let $pokemon = $('<div>').addClass("grid").attr('id', 'popup')
-            
+
             $('#container').append($pokemon)
             $pokemon.append("<img src =" + $imageSource + ">" + ('<br>') + data.name + ('<br>') + '#' + data.id)
-
             //modal popup listener
             $pokemon.on('click', function(){
                 // Code to dynamically display pokedex info //
@@ -380,9 +362,18 @@ const fourthGen = () => {
     } 
     $('#sinnoh').on('click', function(){
         $('#container').empty();
+        $('#title').text('');
         fourthGen();
+        // add title to grid //
+        let $text = $('<h3>')
+        $text.text('Fourth Generation')
+        $('#title').prepend($text)
+        
 }); 
 
+
+
+// Grid of Fifth Gen//
 const fifthGen = () => {
     const urls = []
     for (i=494; i<650; i+=1) {     
@@ -397,10 +388,8 @@ const fifthGen = () => {
             // console.log(data.id)
             let $imageSource = data.sprites.front_default;  
             let $pokemon = $('<div>').addClass("grid").attr('id', 'popup')
-            
             $('#container').append($pokemon)
             $pokemon.append("<img src =" + $imageSource + ">" + ('<br>') + data.name + ('<br>') + '#' + data.id)
-
             //modal popup listener
             $pokemon.on('click', function(){
                 // Code to dynamically display pokedex info //
@@ -429,9 +418,16 @@ const fifthGen = () => {
     } 
     $('#unova').on('click', function(){
         $('#container').empty();
+        $('#title').text('');
         fifthGen();
+        // add title to grid //
+        let $text = $('<h3>')
+        $text.text('Fifth Generation')
+        $('#title').prepend($text)
 }); 
 
+
+// Grid of Sixth Gen//
 const sixthGen = () => {
     const urls = []
     for (i=650; i<722; i+=1) {     
@@ -446,7 +442,6 @@ const sixthGen = () => {
             // console.log(data.id)
             let $imageSource = data.sprites.front_default;  
             let $pokemon = $('<div>').addClass("grid").attr('id', 'popup')
-           
             $('#container').append($pokemon)
             $pokemon.append("<img src =" + $imageSource + ">" + ('<br>') + data.name + ('<br>') + '#' + data.id)
 
@@ -478,7 +473,13 @@ const sixthGen = () => {
     } 
     $('#kalos').on('click', function(){
         $('#container').empty();
+        $('#title').text('');
         sixthGen();
+        // add title to grid //
+        let $text = $('<h3>')
+        $text.text('Sixth Generation')
+        $('#title').prepend($text)
+
 }); 
 
 

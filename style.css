@@ -53,6 +53,10 @@ form {
 
 /* Shuffler */
 
+#random-poke {
+    padding-top: 15px;
+}
+
 #shuffle {
     margin: 15px;
     padding: 15px;
@@ -61,13 +65,16 @@ form {
 #picture {
     height: 96px; 
     min-width: 96px;
-    border: 1px solid black;
     display: flex;
     align-content: justify; 
     font-family: monospace;
     text-align: center;
+    padding: 15px, 15px, 10px, 15px;
 }
 
+#pic-box{
+    border: 1px solid black;
+}
 
 
 /* Fonts */
@@ -93,6 +100,11 @@ h2 {
     font-family: monospace;
 }
 
+h3 {
+    font-family: PokemonSolid;
+    padding-bottom: 5px;
+    font-size: 25px;
+}
 
 /* Grid */
 .grid {
