@@ -11,7 +11,7 @@ const stickyFunction = () => {
     navbar.classList.remove("sticky");
   }
 }
-
+let action = 1;
 
 ///Simple Search///
 $('form').on('submit', (event) => {
@@ -25,10 +25,6 @@ $('form').on('submit', (event) => {
         (data)=>{
             let $imageSource = data.sprites.front_default;  
             let $searchPokemon = $('<div>').attr('id', 'popup').addClass("grid")
-            $('#search').append($searchPokemon)
-            $searchPokemon.append("<img src =" + $imageSource + ">" + ('<br>') + data.name + ('<br>') + '#' + data.id)
-            $searchPokemon.on('click', function(){
-                // Code to dynamically display pokedex info //
                 $("#modal-pop").css('display', 'block');
                 $("#modal-info").append(data.name, '<br>')
                 $("#modal-info").append('ID: #' + data.id, '<br>')
@@ -42,13 +38,13 @@ $('form').on('submit', (event) => {
                         $("#type-one").append("TYPE 1 " + data.types[0].type.name)
                         $("#type-two").hide()
                     }   
-            })
-        },
+                },
         ()=>{
             console.log("failure")
              }
         )
     });
+
 
 
 // Close Modal//
@@ -61,12 +57,21 @@ const closeModal = () => {
     $("#type-one").text('')
     $("#type-two").text('').show();
     $("#modal-pop").css('display', 'none');
+    $("#search-box").val('')
     }
 $closeBtn.on('click', closeModal);
 
 
 ///Shuffle Pokemon///
-let action = 1;
+
+$('#shuffle').hide();
+
+$('#random-pokemon').on('click', function(){
+    $('#shuffle').show();
+    $('#searching').hide();
+})
+
+
 const shuffler = (event) => {
     const randomNumber = Math.floor(Math.random() * 723) 
     // console.log(randomNumber)
@@ -75,7 +80,11 @@ const shuffler = (event) => {
     }).then(
         (data)=>{
             let $imageSource = data.sprites.front_default; 
-
+            $('#container').empty()
+            $('#picture').attr('id', 'popup').addClass("grid")
+            $('#picture').append("<img src =" + $imageSource + ">")
+           
+            // event listener for modal popup //
             $('#picture').on('click', function(){
                 // Code to dynamically display pokedex info //
                 $("#modal-pop").css('display', 'block');
@@ -84,7 +93,8 @@ const shuffler = (event) => {
                 $("#modal-info").append('HEIGHT: ' + data.height, '<br>')
                 $("#modal-info").append('WEIGHT: ' + data.weight, '<br>')
                 $("#modal-image").attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + data.id + ".png" )
-                    if (data.types[0] && data.types[1] ) {
+                    // logic for one or two data types appended to modal // 
+                if (data.types[0] && data.types[1] ) {
                         $("#type-one").append("TYPE 1 " + data.types[0].type.name)
                         $("#type-two").append("TYPE 2 " + data.types[1].type.name)
                     } else { 
@@ -92,6 +102,7 @@ const shuffler = (event) => {
                         $("#type-two").hide()
                     }   
             })
+            // logic for replacing the image using a random image
             if ( action === 1 ) {        
              action = 2
             $('#picture').attr('src', "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + randomNumber + ".png" ) 

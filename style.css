@@ -42,13 +42,19 @@ form {
     padding: 15px; 
 }
 
-#search{
+#searching{
     display: flex;
     align-content: justify; 
     font-family: monospace;
     text-align: center;
+    padding-bottom: 75px;
 }
 
+
+#shuffle {
+    margin: 15px;
+    padding: 1em;
+}
 
 
 /* Fonts */
