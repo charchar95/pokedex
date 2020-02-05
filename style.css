@@ -206,7 +206,31 @@ h2 {
     font-weight: 500;
 }
 
+#submit {
+  background: crimson;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer; 
+  font-family: monospace;
+  font-size: 1em;
+  height: 25px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 150px;
+}
 
+#shuffle {
+    background: crimson;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer; 
+    font-family: monospace;
+    font-size: 1em;
+    height: 45px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 220px;
+}
 
 
 
@@ -240,4 +264,6 @@ h2 {
       -moz-animation: wiggle 0.2s ease-out ;
       -o-animation: wiggle 0.2s ease-out ;
       animation: wiggle 0.2s ease-out ;
+      cursor: pointer;
   }
+
