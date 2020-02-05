@@ -2,7 +2,10 @@
 #sticky-nav {
     overflow: hidden;
     background-color: rgb(57,109,185);
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #sticky-nav a {
@@ -19,8 +22,6 @@
 #sticky-nav a:hover {
     background-color: rgb(232, 48, 76);
 }
-
-
 
 .content {
     padding: 16px;
@@ -42,7 +43,7 @@ form {
     padding: 15px; 
 }
 
-#searching {
+#searching, #random-poke {
     display: flex;
     align-content: justify; 
     font-family: monospace;
@@ -50,10 +51,21 @@ form {
     padding-bottom: 75px;
 }
 
+/* Shuffler */
 
 #shuffle {
     margin: 15px;
-    padding: 1em;
+    padding: 15px;
+}
+
+#picture {
+    height: 96px; 
+    min-width: 96px;
+    border: 1px solid black;
+    display: flex;
+    align-content: justify; 
+    font-family: monospace;
+    text-align: center;
 }
 
 
@@ -97,7 +109,7 @@ h2 {
     flex-wrap: wrap;
     text-align: center;
     font-family: monospace;
-    margin: 0 auto;
+    
 }
 
 #shiny {
@@ -148,6 +160,10 @@ h2 {
     background-color: rgba(0,0,0, .9);
     margin: 0 auto;
     margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
     
 }
 
