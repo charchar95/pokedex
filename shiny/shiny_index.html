@@ -9,38 +9,40 @@
     <title>Shiny Pokedex</title>
 </head> 
 <header>
-<h1>Gotcha Catch ALL the Shinies</h1>
+<h1>Gotcha Catch ALL the Shinies!</h1>
 <div id="sticky-nav">
-    <a href="#search">Advance Search</a>
+    <a href="#search" id="search">Search</a>
     <a href="#kanto" id="kanto">Kanto</a>
     <a href="#johto" id="johto">Johto</a>
     <a href="#hoenn" id="hoenn">Hoenn</a>
     <a href="#sinnoh" id="sinnoh">Sinnoh</a>
     <a href="#unova" id="unova">Unova</a>
     <a href="#kalos" id="kalos">Kalos</a>
-    <a href="#random-pokemon" id="random-pokemon">Random Pokemon Shuffler</a>
-    <a href="../index.html" id="shiny-pokemon">Back To Main</a>
+    <a href="#random-pokemon" id="random-pokemon">Shiny Pokemon Shuffler</a>
+    <a href="shiny_index.html" id="shiny-pokemon">Back to Main</a>
 </div>
 </header>
 <body>
    
 
-<div id="search">
+<div id="searching">
     <h2>Search By Name or Number</h2>
 <form>
     <input type='text' id= "search-box" placeholder="name or id"/>
-    <input type='submit' value="Get Poke Info"/>
+    <input type='submit' id ="submit" value="Get Poke Info"/>
 </form>
 </div>
 
-<!-- <div id="searching">
-    <button id="fairy">fairy</button>
-</div> -->
+
 
 
 <div id="random-poke">
 <button id="shuffle">Show Me Random a Pokemon</button>
-<img id="picture" src="">
+<div id="pic-box">
+    <img id="picture" src="">
+    <div id ="info">
+    </div>
+</div>
 <!-- <button id="shiny-shuffler">Will it be shiny</button>
 <img id="shiny" src=""> -->
 </div>
@@ -69,10 +71,11 @@
 </div>
 
 
-
-<div id="container">
+<div id = wrapper>
+    <div id=title></div>  
+    <div id="container">
+    </div>
 </div>
-
     <script src='shiny_app.js'></script>
 </body>
 </html>
